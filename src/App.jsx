@@ -1,13 +1,12 @@
 import './App.css'
+import Home from './components/Home'
 
 function App() {
   
 
   return (
     <div>
-      <h1 className='text-red-400'>
-        FitChain
-      </h1>
+     <Home />
     </div>  
   )
 }
