@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 
 const ActivityInputForm = () => {
   const [activity, setActivity] = useState('');
-  const [calories, setCalories] = useState('');
-  const [sets, setSets] = useState('');
-  const [duration, setDuration] = useState('');
+  const [calories, setCalories] = useState(0);
+  const [sets, setSets] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [timestamp, setTimestamp] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,6 +73,19 @@ const ActivityInputForm = () => {
               required
             />
           </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">Timestamp</label>
+            <input
+              type="text"
+              value={timestamp}
+              onChange={(e) => setTimestamp(e.target.value)}
+              placeholder="Enter Timestamp(YY-MM-DD)"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              required
+            />
+          </div>
+
 
           {/* Submit Button */}
           <button
