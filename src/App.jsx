@@ -22,7 +22,7 @@ function App() {
           className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300"
           whileHover={{ scale: 1.05 }}
         >
-          Workout Tracker 🏋️‍♂️
+          Fit-Chain 🏋️‍♂️
         </motion.h1>
 
         {/* Navigation Links */}
