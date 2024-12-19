@@ -39,7 +39,7 @@ function App() {
         </div>
       </motion.nav>
 
-      {/* Page Content */}
+   
       <div className="min-h-screen bg-gray-800">
         <Routes>
           <Route path="/" element={<AddWorkout />} />
@@ -50,7 +50,7 @@ function App() {
   );
 }
 
-// Updated NavLink Component
+
 // eslint-disable-next-line react/prop-types
 const NavLink = ({ to, children, icon }) => (
   <motion.div
