@@ -33,7 +33,6 @@ const ViewWorkouts = () => {
           Your Workouts 🏋️‍♂️
         </h2>
 
-        {/* Conditional Rendering */}
         {workouts.length === 0 ? (
           <p className="text-center text-gray-400">No workouts found. Start adding some!</p>
         ) : (
@@ -44,7 +43,7 @@ const ViewWorkouts = () => {
                 className="bg-gray-800 p-5 rounded-2xl shadow-md border border-gray-700 hover:border-blue-400 transition-all duration-300"
               >
                 <p className="text-xl font-semibold text-blue-400 mb-2">
-                  {workout.activity || workout[0]} {/* Support both formats */}
+                  {workout.activity || workout[0]}
                 </p>
                 <p className="text-gray-300">
                   <strong>Duration:</strong> {workout.duration || workout[1]} mins
