@@ -31,8 +31,11 @@ const AddWorkout = () => {
       const contract = await getContract(web3);
       const accounts = await web3.eth.getAccounts();
 
+      // Convert date to UNIX timestamp (seconds)
+      const unixTimestamp = Math.floor(new Date(timestamp).getTime() / 1000);
+
       await contract.methods
-        .addWorkout(activity, duration, calories, sets, timestamp)
+        .addWorkout(activity, duration, calories, sets, unixTimestamp)
         .send({ from: accounts[0] });
 
       alert("Workout added successfully!");
@@ -118,45 +121,15 @@ const AddWorkout = () => {
             />
           </div>
 
-          <motion.div
-            className="flex justify-center"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <motion.div className="flex justify-center" whileHover={{ scale: 1.05 }}>
             <button
               type="submit"
-              className={`w-full md:w-1/2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold py-3 px-6 rounded-full shadow-xl hover:shadow-blue-400 transition-all duration-300 ${
+              className={`w-full md:w-1/2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold py-3 px-6 rounded-full shadow-xl ${
                 isLoading ? "opacity-75 cursor-not-allowed" : "hover:scale-105"
               }`}
               disabled={isLoading}
             >
-              {isLoading ? (
-                <>
-                  <svg
-                    className="animate-spin h-5 w-5 mr-2 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8v8H4z"
-                    ></path>
-                  </svg>
-                  Submitting...
-                </>
-              ) : (
-                "Add Workout"
-              )}
+              {isLoading ? "Submitting..." : "Add Workout"}
             </button>
           </motion.div>
         </form>
@@ -165,28 +138,11 @@ const AddWorkout = () => {
   );
 };
 
-const InputField = ({
-  label,
-  name,
-  type,
-  placeholder,
-  // eslint-disable-next-line react/prop-types
-  value,
-  onChange,
-  icon,
-  className = "",
-}) => (
-  <motion.div
-    className={`relative ${className}`}
-    initial={{ opacity: 0, y: -20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-  >
+const InputField = ({ label, name, type, placeholder, value, onChange, icon, className = "" }) => (
+  <motion.div className={`relative ${className}`} transition={{ duration: 0.5 }}>
     <label className="block text-gray-300 font-semibold mb-2">{label}</label>
     <div className="relative">
-      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-        {icon}
-      </div>
+      <div className="absolute inset-y-0 left-0 pl-4 flex items-center">{icon}</div>
       <input
         type={type}
         name={name}
@@ -194,7 +150,7 @@ const InputField = ({
         onChange={onChange}
         value={value}
         required
-        className="w-full pl-12 pr-4 py-3 rounded-full bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-400 text-white placeholder-gray-400"
+        className="w-full pl-12 pr-4 py-3 rounded-full bg-white/10 border border-white/20 focus:ring-2 focus:ring-blue-400 text-white"
       />
     </div>
   </motion.div>

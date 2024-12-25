@@ -2,10 +2,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Dumbbell, List } from "lucide-react";
+import { Dumbbell, List, Search } from "lucide-react";
 import "./App.css";
 import AddWorkout from "./components/AddWorkout";
 import ViewWorkouts from "./components/ViewWorkouts";
+import SearchWorkout from "./components/SearchWorkout";
 
 function App() {
   return (
@@ -26,15 +27,18 @@ function App() {
         </motion.h1>
 
         {/* Navigation Links */}
-        <div className="space-x-6 flex">
+        <div className="space-x-6 flex flex-wrap">
           <NavLink to="/" icon={<Dumbbell size={20} className="text-blue-400" />}>
-            Add Workout
+            {/* Add Workout */}
           </NavLink>
           <NavLink
             to="/view-workouts"
             icon={<List size={20} className="text-cyan-300" />}
           >
-            View Workouts
+            {/* View Workouts */}
+          </NavLink>
+          <NavLink to="/search-workouts" icon={<Search size={20} className="text-blue-400"/>}>
+            {/* Search */}
           </NavLink>
         </div>
       </motion.nav>
@@ -44,6 +48,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AddWorkout />} />
           <Route path="/view-workouts" element={<ViewWorkouts />} />
+          <Route path="/search-workouts" element={<SearchWorkout />} />
         </Routes>
       </div>
     </Router>
